@@ -4,37 +4,37 @@
 #define MAX_SIZE 666
 #define SWAP(x, y, temp) ((temp)=(x), (x)=(y), (y)=(temp))
 
-struct member{
+struct member{ // 데이터 파일을 정리해서 저장할 구조체 선언
 
-   char name[40];
+   char name[40]; // 축구 선수 이름
 
-   char team[25];
+   char team[25]; // 소속팀명
 
-   int point;
+   int point; // 축구 선수 점수
 
-   char position[25];
+   char position[25]; // 축구 선수의 포지션
 
 };
 
-typedef struct Node{
+typedef struct Node{ // 연결리스트 구현을 위한 노드 타입 구조체 선언
     struct member data;
     struct Node* next;
 }Node;
 
-Node* createList(){
-    Node *node=(Node*)malloc(sizeof(Node));
-    node = NULL;
+Node* createList(){ // 빈 연결 리스트 생성 함수
+    Node *node=(Node*)malloc(sizeof(Node)); // 동적할당
+    node = NULL; // 빈 값을 넣음
 
     return node;
 }
 
-Node* insert(Node* head, struct member data){
-    Node* node = (Node*)malloc(sizeof(Node));
-    node->data = data;
-    node->next = head;
+Node* insert(Node* head, struct member data){ // 값을 연결리스트에 추가하는 함수
+    Node* node = (Node*)malloc(sizeof(Node)); // 동적할당
+    node->data = data; // 구조체에 값을 넣음
+    node->next = head; // next에 head값 저장
     return node;
 }
-void printAll(Node* head){
+void printAll(Node* head){ // 출력 함수
     int i=1;
     Node *p = (Node*)malloc(sizeof(Node));
     p=head;
@@ -68,7 +68,7 @@ int partition(struct member m[], int left, int right){
 
     return high;
 }
-void quick_sort(struct member m[], int left, int right){
+void quick_sort(struct member m[], int left, int right){ // 퀵 정렬 함수
     if(left<right){
         int q=partition(m, left, right);
         quick_sort(m, left, q-1);
@@ -76,22 +76,21 @@ void quick_sort(struct member m[], int left, int right){
     }
 }
 int main()
-
 {
 
    struct member m[668];
 
-   int i, choice=1;
+   int i, choice=10;
    int n = MAX_SIZE;
 
    FILE *f;
 
-   f=fopen("soccer.text","r");
+   f=fopen("soccer.text","r"); // 데이터 파일을 불러온다
 
 
    for(i=0;i<n;i++)
 
-   fscanf(f,"%s %s %d %s",&m[i].name,&m[i].team, &m[i].point, &m[i].position);
+   fscanf(f,"%s %s %d %s",&m[i].name,&m[i].team, &m[i].point, &m[i].position); // 구조체로 값을 저장
 
    fclose(f);
 
@@ -107,13 +106,12 @@ int main()
    //printf("%s", head->data.name);
 
    while(choice){
+    //choice = 5;
     printf("=============== 메인 ===============\n");
     printf("\n\t1. 전체 순위 보기\n\t2. 선수 검색\n\t3. 포지션별 순위\n\t4. 종료\n");
     printf("\n=====================================\n");
     printf("\n번호를 입력 해주세요 >>> ");
     scanf("%d", &choice);
-
-
     printf("\n=====================================\n");
     switch(choice){
         case 1:
@@ -125,7 +123,7 @@ int main()
             printf("\n============= 선수 정보 =============\n\n");
             char search[100];
             int d=1;
-            printf("찾을 선수 이름을 입력하세요 >>> ");
+            printf("찾을 선수 이름을 입력하세요 >>>");
             scanf("%s", search);
             strlwr(search);
             for(p=head; p!=NULL; p=p->next){
