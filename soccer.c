@@ -3,6 +3,7 @@
 #include <string.h>
 #define MAX_SIZE 666
 #define SWAP(x, y, temp) ((temp)=(x), (x)=(y), (y)=(temp))
+#include <ctype.h> //C언어
 
 struct member{
 
@@ -112,6 +113,8 @@ int main()
     printf("\n=====================================\n");
     printf("\n번호를 입력 해주세요 >>> ");
     scanf("%d", &choice);
+
+
     printf("\n=====================================\n");
     switch(choice){
         case 1:
@@ -119,15 +122,23 @@ int main()
             printAll(head);
             //for(i=0; i<n; i++) printf("%d위 : %s\n", i+1, m[i].name);
             break;
-        case 2:
+        case 2:{
             printf("\n============= 선수 정보 =============\n\n");
             char search[100];
-            printf("찾을 선수 이름을 입력하세요 >>> ");
+            int d=1;
+            printf("찾을 선수 이름을 입력하세요 >>>");
             scanf("%s", search);
+            strlwr(search);
             for(p=head; p!=NULL; p=p->next){
-                if(strcmp(p->data.name, search)==0) printf("\n\n\t이름 : %s\n소속팀 : %s\n포인트 : %d\n포지션 : %s\n\n", p->data.name, p->data.team, p->data.point, p->data.position);
+                if(strcmp(strlwr(p->data.name), search)==0) {
+                    printf("\n\n\t이름 : %s\n\t소속팀 : %s\n\t포인트 : %d\n\t포지션 : %s\n\n", p->data.name, p->data.team, p->data.point, p->data.position);
+                    d=0;
+                }
             }
+            if(d) printf("선수 이름 잘못 입력");
+
             break;
+        }
         case 3:{
             printf("\n=========== 포지션별 순위 ===========\n");
             char s2[100];
