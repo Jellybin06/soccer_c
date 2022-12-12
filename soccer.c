@@ -122,7 +122,7 @@ int main()
         case 2:
             printf("\n============= 선수 정보 =============\n\n");
             char search[100];
-            printf("찾을 선수 이름을 입력하세요 >>>");
+            printf("찾을 선수 이름을 입력하세요 >>> ");
             scanf("%s", search);
             for(p=head; p!=NULL; p=p->next){
                 if(strcmp(p->data.name, search)==0) printf("\n\n\t이름 : %s\n소속팀 : %s\n포인트 : %d\n포지션 : %s\n\n", p->data.name, p->data.team, p->data.point, p->data.position);
