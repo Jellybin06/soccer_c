@@ -3,7 +3,6 @@
 #include <string.h>
 #define MAX_SIZE 666
 #define SWAP(x, y, temp) ((temp)=(x), (x)=(y), (y)=(temp))
-#include <ctype.h> //C언어
 
 struct member{
 
@@ -126,7 +125,7 @@ int main()
             printf("\n============= 선수 정보 =============\n\n");
             char search[100];
             int d=1;
-            printf("찾을 선수 이름을 입력하세요 >>>");
+            printf("찾을 선수 이름을 입력하세요 >>> ");
             scanf("%s", search);
             strlwr(search);
             for(p=head; p!=NULL; p=p->next){
